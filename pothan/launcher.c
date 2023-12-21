@@ -42,6 +42,8 @@ char string_deinit(string *a) {
     free(a->str);
 }
 
+const char* bin_path = "code\\Code.exe";
+
 int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
     char rootdir[PATH_MAX];
@@ -51,9 +53,25 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     string_init(&app_data);
     string_push(&app_data, "APPDATA=");
     string_push(&app_data, rootdir);
-    string_push(&app_data, "\\modules");
+    string_push(&app_data, "\\data");
 
     putenv(to_str(&app_data));
+
+    string home_path;
+    string_init(&home_path);
+    string_push(&home_path, "HOMEPATH=");
+    string_push(&home_path, rootdir);
+    string_push(&home_path, "\\data");
+
+    putenv(to_str(&home_path));
+
+    string user_profile;
+    string_init(&user_profile);
+    string_push(&user_profile, "USERPROFILE=");
+    string_push(&user_profile, rootdir);
+    string_push(&user_profile, "\\data");
+
+    putenv(to_str(&user_profile));
 
     string_deinit(&app_data);
 
@@ -65,7 +83,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
     CreateProcess(
         NULL,
-        "xiphos\\bin\\xiphos.exe",
+        bin_path,
         NULL,
         NULL,
         FALSE,

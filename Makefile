@@ -8,8 +8,8 @@ all: inflator.exe deflator.exe
 	@cp pothan/shortcut.exe build/pothan/
 	@mkdir -p build/App
 	@cp pothan/launcher.exe build/App/
-	@mkdir -p build/App/modules
-	@mkdir -p build/App/xiphos
+	@mkdir -p build/App/data
+	@mkdir -p build/App/code
 
 inflator.exe: inflator.c
 	@gcc inflator.c -o inflator.exe

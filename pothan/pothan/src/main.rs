@@ -17,7 +17,7 @@ const APP_PATH: &str = "App";
 const APP_COMPRESSED_PATH: &str = "App.cmp";
 const APP_TARBALL_PATH: &str = "App.tmp";
 
-const APP_SHORTCUT_NAME: &str = "Xiphos";
+const APP_SHORTCUT_NAME: &str = "Code";
 
 fn main() -> Result<()> {
     let mut args = args();
@@ -70,7 +70,7 @@ fn main() -> Result<()> {
                 Ok(_) => {}
                 Err(_) => {}
             };
-            match remove_file("Xiphos.lnk") {
+            match remove_file(APP_SHORTCUT_NAME.to_owned() + ".lnk") {
                 Ok(_) => {}
                 Err(_) => {}
             };
