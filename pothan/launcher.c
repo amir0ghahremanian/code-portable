@@ -53,15 +53,23 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     string_init(&app_data);
     string_push(&app_data, "APPDATA=");
     string_push(&app_data, rootdir);
-    string_push(&app_data, "\\data");
+    string_push(&app_data, "\\data\\home\\AppData\\Roaming");
 
     putenv(to_str(&app_data));
+
+    string local_app_data;
+    string_init(&local_app_data);
+    string_push(&local_app_data, "LOCALAPPDATA=");
+    string_push(&local_app_data, rootdir);
+    string_push(&local_app_data, "\\data\\home\\AppData\\Local");
+
+    putenv(to_str(&local_app_data));
 
     string home_path;
     string_init(&home_path);
     string_push(&home_path, "HOMEPATH=");
     string_push(&home_path, rootdir);
-    string_push(&home_path, "\\data");
+    string_push(&home_path, "\\data\\home");
 
     putenv(to_str(&home_path));
 
@@ -69,7 +77,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
     string_init(&user_profile);
     string_push(&user_profile, "USERPROFILE=");
     string_push(&user_profile, rootdir);
-    string_push(&user_profile, "\\data");
+    string_push(&user_profile, "\\data\\home");
 
     putenv(to_str(&user_profile));
 
